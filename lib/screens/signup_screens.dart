@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:modal_progress_hud/modal_progress_hud.dart';
+import 'package:provider/provider.dart';
+import 'package:welcome_page/provider/modelHud.dart';
 import 'package:welcome_page/screens/welcome_screens.dart';
+
+import 'components/homepage_screens.dart';
 
 class SignupScreen extends StatefulWidget {
   static const String id = 'signup_screen';
@@ -8,19 +13,24 @@ class SignupScreen extends StatefulWidget {
 }
 
 class _SignupScreenState extends State<SignupScreen> {
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
     return Scaffold(
-      resizeToAvoidBottomInset: true,
-        body: SingleChildScrollView(
-         scrollDirection: Axis.vertical,
+      resizeToAvoidBottomInset: false,
+        body: ModalProgressHUD(
+        inAsyncCall: Provider.of<ModelHud>(context).isLoading,
+         child: Form(
+          key: _formKey,
          child: Container(
-           padding: EdgeInsets.symmetric(horizontal: 25),
+           margin: EdgeInsets.symmetric(horizontal: 25),
            child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+             mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-           SizedBox(height: 50,),
-           Row(
+            SizedBox(height: height * .1,),
+            Row(
             children: [
               IconButton(icon:  const Icon(Icons.arrow_back_ios, color: Colors.black, size: 20,),
               onPressed: () {
@@ -28,31 +38,37 @@ class _SignupScreenState extends State<SignupScreen> {
               }),
 
              Container(
-             padding: EdgeInsets.only(left: 70),
+             padding: EdgeInsets.only(left: 60),
              child: Text('Sign Up', style: TextStyle(color: Colors.blue.shade800,
-                 fontSize: 35,
+                 fontSize: 25,
                  fontWeight: FontWeight.bold,
-               fontFamily: 'Anton'
+               fontFamily: 'Source Sans Pro'
                ),),
               ),
              ],
             ),
-            SizedBox(height: 15.0,),
+           SizedBox(
+             height: height * .02,),
             Row(
               children: [
                 Text('Email',
                   style: TextStyle(
-                    color: Colors.blue.shade700,
-                    fontFamily: 'Anton',
+                    color: Colors.blue.shade800,
+                    fontFamily: 'Source Sans Pro',
                     fontSize: 20,
                   ),),
               ],
             ),
-            TextField(
-              onChanged: (value) {
-                //Do something with the user input.
+            TextFormField(
+              validator: (val){
+                if(val.isEmpty ){
+                  return'This value is Empty';
+                }return null;
+              },
+              onSaved: (val){
               },
               decoration: InputDecoration(
+                hintText: 'Enter your email',
                 contentPadding:
                 EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
                 border: OutlineInputBorder(
@@ -68,24 +84,29 @@ class _SignupScreenState extends State<SignupScreen> {
                 ),
               ),
             ),
-            SizedBox(
-              height: 20.0,
+              SizedBox(
+                height: height * .02,
             ),
             Row(
               children: [
                 Text('User Name',
                   style: TextStyle(
-                    color: Colors.blue.shade700,
-                    fontFamily: 'Anton',
+                    color: Colors.blue.shade800,
+                    fontFamily: 'Source Sans Pro',
                     fontSize: 20,
                   ),),
               ],
             ),
-            TextField(
-              onChanged: (value) {
-                //Do something with the user input.
+            TextFormField(
+              validator: (val){
+                if(val.isEmpty ){
+                  return'This value is Empty';
+                }return null;
+              },
+              onSaved: (val){
               },
               decoration: InputDecoration(
+                hintText: 'Enter your Name',
                 contentPadding:
                 EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
                 border: OutlineInputBorder(
@@ -103,24 +124,29 @@ class _SignupScreenState extends State<SignupScreen> {
                 ),
               ),
             ),
-            SizedBox(
-              height: 20.0,
+              SizedBox(
+                height: height * .02,
             ),
             Row(
               children: [
                 Text('Password',
                   style: TextStyle(
-                    color: Colors.blue.shade700,
-                    fontFamily: 'Anton',
+                    color: Colors.blue.shade800,
+                    fontFamily: 'Source Sans Pro',
                     fontSize: 20,
                   ),),
               ],
             ),
-            TextField(
-              onChanged: (value) {
-                //Do something with the user input.
+            TextFormField(
+              validator: (val){
+                if(val.isEmpty ){
+                  return'This value is Empty';
+                }return null;
+              },
+              onSaved: (val){
               },
               decoration: InputDecoration(
+                hintText: 'Enter your Password',
                 contentPadding:
                 EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
                 border: OutlineInputBorder(
@@ -138,24 +164,29 @@ class _SignupScreenState extends State<SignupScreen> {
                 ),
               ),
             ),
-            SizedBox(
-              height: 20.0,
+              SizedBox(
+                height: height * .02,
             ),
             Row(
               children: [
                 Text('Confirm Password',
                   style: TextStyle(
-                    color: Colors.blue.shade700,
-                    fontFamily: 'Anton',
+                    color: Colors.blue.shade800,
+                    fontFamily: 'Source Sans Pro',
                     fontSize: 20,
                   ),),
               ],
             ),
-            TextField(
-              onChanged: (value) {
-                //Do something with the user input.
+            TextFormField(
+              validator: (val){
+                if(val.isEmpty ){
+                  return'This value is Empty';
+                }return null;
+              },
+              onSaved: (val){
               },
               decoration: InputDecoration(
+                hintText: 'Enter your Pasword',
                 contentPadding:
                 EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
                 border: OutlineInputBorder(
@@ -171,33 +202,40 @@ class _SignupScreenState extends State<SignupScreen> {
                 ),
               ),
             ),
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 50, horizontal: 50),
-              child: Material(
-                color: Colors.lightBlue.shade400,
-                borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                elevation: 10.0,
-                child: MaterialButton(
-                  padding: EdgeInsets.symmetric(vertical: 10),
-                  onPressed: () {
-                    //Implement registration functionality.
-                  },
-                  minWidth: 200.0,
-                  height: 50.0,
-                  child: Text(
-                    'Next',
-                    style: TextStyle(color: Colors.white,
-                    fontFamily:'Anton',
-                      fontSize: 30.0,
-                      fontWeight: FontWeight.w900,
+           SizedBox(
+             height: height * .05,),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(10, 20, 10, 0),
+                child: Material(
+                  color: Colors.lightBlue.shade500,
+                  borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                  elevation: 10.0,
+                  child: MaterialButton(
+                    padding: EdgeInsets.symmetric(vertical: 10),
+                    onPressed: () async { final modelhud =
+                    Provider.of<ModelHud>(context, listen: false);
+                    modelhud.changeisLoading(true);
+                      if(_formKey.currentState.validate()){
+                        _formKey.currentState.save();
+                      //do something
+                    }},
+                    minWidth: 200.0,
+                    height: 30.0,
+                    child: Text(
+                      'Next',
+                      style: TextStyle(color: Colors.white,
+                        fontFamily:'Source Sans Pro',
+                        fontSize: 30.0,
+                        fontWeight: FontWeight.w900,
+                      ),
                     ),
                   ),
                 ),
               ),
-            ),
+
           ],
         ),
       ),
-    ));
+    )));
   }
 }

@@ -1,23 +1,36 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:welcome_page/provider/modelHud.dart';
 import 'screens/welcome_screens.dart';
 import 'package:welcome_page/screens/login_screens.dart';
 import 'package:welcome_page/screens/signup_screens.dart';
-
-
-
+import 'screens/forgetpassword_screens.dart';
+import 'screens/components/homepage_screens.dart';
 void main() {
   runApp(MyHomePage());
 }
+// ignore: must_be_immutable
 class MyHomePage extends StatelessWidget {
+  bool isUserLoggedIn = false;
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MultiProvider(
+    providers: [
+    ChangeNotifierProvider<ModelHud>(
+    create: (context) => ModelHud(),
+    ),
+    ],
+    child:
+    MaterialApp(
       initialRoute: WelcomeScreen.id,
       routes: {
         WelcomeScreen.id: (context) => WelcomeScreen(),
         LoginScreen.id: (context) => LoginScreen(),
         SignupScreen.id: (context) => SignupScreen(),
+        ForgetPasswordScreen.id: (context) => ForgetPasswordScreen(),
+        HomepageScreen.id: (context) => HomepageScreen(),
       },
+    ),
     );
-  }
-}
+    }
+    }

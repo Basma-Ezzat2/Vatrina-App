@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'components/homepage_screens.dart';
 import 'signup_screens.dart';
 import 'login_screens.dart';
 
@@ -15,7 +17,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Padding(
-        padding: EdgeInsets.fromLTRB(20, 40, 20, 200),
+        padding: EdgeInsets.fromLTRB(20, 60, 20, 0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -41,12 +43,12 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               child: Text('Log In',
                 style: TextStyle(
                     fontSize: 30,
-                    fontFamily: 'Anton'
+                    fontFamily: 'Source Sans Pro'
                 ),),
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10),
               ),
               padding: EdgeInsets.symmetric(horizontal: 30, vertical: 8),
-              color: Colors.blue,
+              color: Colors.lightBlue.shade500,
               textColor: Colors.white,
               onPressed: (){
                 Navigator.pushNamed(context, LoginScreen.id);
@@ -60,7 +62,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               child: Text('Sign Up',
                 style: TextStyle(
                   fontSize: 30,
-                  fontFamily: 'Anton',
+                  fontFamily: 'Source Sans Pro',
                 ),),
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10),
               ),
@@ -78,12 +80,28 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               child: Text('Just a Visitor',
                 style: TextStyle(
                     fontSize: 30,
-                    fontFamily: 'Anton'
+                    fontFamily: 'Source Sans Pro'
                 ),),
-              onPressed: (){},
+              onPressed: (){Navigator.pushNamed(context, HomepageScreen.id);},
               padding: EdgeInsets.symmetric(horizontal: 30, vertical: 4),
               textColor: Colors.lightBlue[800],
             ),
+            SizedBox(height: 45,),
+             Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+               children: <Widget>[
+                  Text('Language:', style: TextStyle(color: Colors.lightBlue.shade500,
+                  fontFamily: 'Source Sans Pro',
+                  fontSize: 20)),
+                  Container(
+                    margin: EdgeInsets.only(left: 6),
+                    child: Text('English >', style: TextStyle(color: Colors.red,
+                        fontFamily: 'Source Sans Pro',
+                        fontSize: 20,
+                        fontWeight: FontWeight.w500)),
+                  ),
+                ],
+              ),
           ],
         ),
       ),
