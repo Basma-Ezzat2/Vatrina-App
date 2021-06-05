@@ -8,7 +8,6 @@ import 'package:welcome_page/screens/signup_screens.dart';
 import 'package:welcome_page/screens/welcome_screens.dart';
 import 'signup_screens.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
-import 'components/homepage_screens.dart';
 
 class LoginScreen extends StatefulWidget {
   static const String id = 'login_screen';

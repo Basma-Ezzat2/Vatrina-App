@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'components/homepage_screens.dart';
+import 'homepage_screens.dart';
 import 'signup_screens.dart';
 import 'login_screens.dart';
 

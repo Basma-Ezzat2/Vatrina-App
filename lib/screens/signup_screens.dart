@@ -4,7 +4,8 @@ import 'package:provider/provider.dart';
 import 'package:welcome_page/provider/modelHud.dart';
 import 'package:welcome_page/screens/welcome_screens.dart';
 
-import 'components/homepage_screens.dart';
+import 'homepage_screens.dart';
+import 'login_screens.dart';
 
 class SignupScreen extends StatefulWidget {
   static const String id = 'signup_screen';
@@ -212,11 +213,8 @@ class _SignupScreenState extends State<SignupScreen> {
                   elevation: 10.0,
                   child: MaterialButton(
                     padding: EdgeInsets.symmetric(vertical: 10),
-                    onPressed: () async { final modelhud =
-                    Provider.of<ModelHud>(context, listen: false);
-                    modelhud.changeisLoading(true);
+                    onPressed: (){
                       if(_formKey.currentState.validate()){
-                        _formKey.currentState.save();
                       //do something
                     }},
                     minWidth: 200.0,
@@ -232,6 +230,33 @@ class _SignupScreenState extends State<SignupScreen> {
                   ),
                 ),
               ),
+              SizedBox(height: 25,),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'Already have an Account?',
+                    style: TextStyle(
+                      fontFamily: 'Source Sans Pro',
+                      color: Colors.grey[600],
+                      fontSize: 16,
+                    ),
+                  ),
+                  SizedBox(height: 5, width: 5,),
+                  InkWell(
+                    onTap: (){
+                      Navigator.pushNamed(context, LoginScreen.id);},
+                    child: Text(
+                      'Log In',
+                      style: TextStyle(
+                          fontFamily: 'Source Sans Pro',
+                          color: Colors.blue,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold
+                      ),),
+                  )
+                ],
+              ),
 
           ],
         ),
@@ -239,3 +264,12 @@ class _SignupScreenState extends State<SignupScreen> {
     )));
   }
 }
+
+
+//onPressed: () async { final modelhud =
+//                     Provider.of<ModelHud>(context, listen: false);
+//                     modelhud.changeisLoading(true);
+//                       if(_formKey.currentState.validate()){
+//                         _formKey.currentState.save();
+//                       //do something
+//                     }},

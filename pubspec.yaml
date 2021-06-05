@@ -23,6 +23,8 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
+    - assets/images/
+    - icons/
     - assets/images/vatrina.png
     - assets/images/product-placeholder.png
 

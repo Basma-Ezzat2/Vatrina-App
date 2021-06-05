@@ -1,6 +1,12 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:welcome_page/screens/components/cart_screens.dart';
+import 'package:welcome_page/screens/components/favorites_screens.dart';
+
+import 'components/home.dart';
+import 'components/profile_screens.dart';
+
 
 
 class HomepageScreen extends StatefulWidget {
@@ -10,67 +16,31 @@ class HomepageScreen extends StatefulWidget {
   _HomepageScreenState createState() => _HomepageScreenState();
 }
 class _HomepageScreenState extends State<HomepageScreen> {
-  PageController _pageController =PageController();
-  List<Widget> _screens =[];
-  void _onPageChanged(int index){}
+  PageController _pageController =PageController(
+    initialPage: 0,
+  );
+  List<Widget> _screens =[
+    Home(),
+    Favourites(),
+    Cart(),
+    Profile(),
+
+  ];
+  void _onPageChanged(page){
+    setState((){
+        _currentIndex = page;
+
+    });
+  }
   int _currentIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-    appBar: AppBar(
-    automaticallyImplyLeading: false,
-    backgroundColor: Colors.lightBlue.shade500,
-    toolbarHeight: 170,
-    elevation: 6,
-    flexibleSpace: Container(
-    margin: EdgeInsets.only(bottom: 50),
-    decoration: BoxDecoration(
-    image: DecorationImage(
-    image: AssetImage('assets/images/vatrina.png'),
-    fit: BoxFit.cover,
-    ),
-    ),
-    ),
-
-    title: Container(
-    margin: EdgeInsets.only(top: 90),
-    padding: EdgeInsets.only(
-    left: 10,
-    right: 10,
-    bottom: 5,
-    ),
-    decoration: BoxDecoration(
-    color: Colors.white,
-    borderRadius: BorderRadius.only(
-    topLeft: Radius.circular(10),
-    topRight: Radius.circular(10),
-    bottomLeft: Radius.circular(10),
-    bottomRight: Radius.circular(10),
-    ),
-    ),
-    child: Row(
-    children: <Widget>[
-    Icon(Icons.search, color: Colors.lightBlue.shade200,),
-    Expanded(
-    child: TextField(
-    onTap: () {showSearch(context: context, delegate: DataSearch());},
-    decoration: InputDecoration(
-    hintText: "Search",
-    enabledBorder: InputBorder.none,
-    focusedBorder: InputBorder.none,
-    hintStyle: TextStyle(
-    fontSize: 20,
-    fontFamily: 'Source Sans Pro'
-    ),),),
-    ),
-    ],
-    ),
-    ),
-    ),
-      body: PageView(
+      body:PageView(
+        onPageChanged: _onPageChanged,
         controller: _pageController,
         children: _screens,
-        onPageChanged: _onPageChanged,
+        physics: NeverScrollableScrollPhysics(),
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
@@ -124,8 +94,9 @@ class _HomepageScreenState extends State<HomepageScreen> {
               backgroundColor: Colors.lightBlue.shade200),
         ],
         onTap: (index) {
+          _pageController.jumpToPage(index);
+          _currentIndex = index;
           setState(() {
-            _currentIndex = index;
           });
         },
       ),);
