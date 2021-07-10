@@ -1,13 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:welcome_page/screens/signup_screens.dart';
 import 'package:welcome_page/screens/welcome_screens.dart';
-
-import '../main.dart';
-import 'forgetpassword_screens.dart';
-import 'homepage_screens.dart';
-import 'login_screens.dart';
-
 
 
 class Data {

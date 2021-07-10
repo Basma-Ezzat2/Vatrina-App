@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:welcome_page/screens/components/categories.dart';
 import 'package:welcome_page/screens/components/product.dart';
-
 import '../homepage_screens.dart';
 
 
@@ -17,7 +16,7 @@ class _HomeState extends State<Home>
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 3, vsync: this);
+    _tabController = TabController(length: 7, vsync: this);
   }
 
 
@@ -74,8 +73,12 @@ class _HomeState extends State<Home>
           ),
         ),
       ),
-      body: ListView(
-        padding: EdgeInsets.only(left: 20.0),
+      body: Container(
+        height: double.infinity,
+        width: double.infinity,
+        margin: EdgeInsets.symmetric(horizontal: 20),
+        child: ListView(
+          scrollDirection: Axis.vertical,
         children: <Widget>[
           SizedBox(height: 15.0),
           Text('Categories',
@@ -85,21 +88,72 @@ class _HomeState extends State<Home>
                   color: Colors.lightBlue.shade500,
                   fontWeight: FontWeight.bold)),
           Categories(),
-          SizedBox(height: 15.0),
+          SizedBox(height: 20.0),
+          Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
           Text('New Arrival',
               style: TextStyle(
                   fontFamily: 'Source Sans Pro',
                   fontSize: 20.0,
                   color: Colors.lightBlue.shade500,
                   fontWeight: FontWeight.bold)),
+                Text('View All',
+                    style: TextStyle(
+                        fontFamily: 'Source Sans Pro',
+                        fontSize: 20.0,
+                        color: Colors.lightBlue.shade500,
+                        fontWeight: FontWeight.bold)),
+              ]),
           Container(
-            height: 320,
+            height: 200,
+            child: Products(),
+          ),
+          Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+          Text('Best Popular',
+              style: TextStyle(
+                  fontFamily: 'Source Sans Pro',
+                  fontSize: 20.0,
+                  color: Colors.lightBlue.shade500,
+                  fontWeight: FontWeight.bold)),
+          Text('View All',
+              style: TextStyle(
+                  fontFamily: 'Source Sans Pro',
+                  fontSize: 20.0,
+                  color: Colors.lightBlue.shade500,
+                  fontWeight: FontWeight.bold)),
+          ]),
+          Container(
+            height: 200,
+            child: Products(),
+          ),
+          SizedBox(height: 20.0),
+          Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+          Text('Best Seller',
+              style: TextStyle(
+                  fontFamily: 'Source Sans Pro',
+                  fontSize: 20.0,
+                  color: Colors.lightBlue.shade500,
+                  fontWeight: FontWeight.bold)),
+                Text('View All',
+                    style: TextStyle(
+                        fontFamily: 'Source Sans Pro',
+                        fontSize: 20.0,
+                        color: Colors.lightBlue.shade500,
+                        fontWeight: FontWeight.bold)),
+              ]),
+          Container(
+            height: 200,
             child: Products(),
           ),
         ],
       ),
+      )
 
-
-     );
+      );
   }
 }
