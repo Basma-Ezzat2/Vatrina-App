@@ -27,6 +27,7 @@ flutter:
     - icons/
     - assets/images/vatrina.png
     - assets/images/product-placeholder.png
+    - icons/Cancel.png
 
   fonts:
   - family: Source Sans Pro

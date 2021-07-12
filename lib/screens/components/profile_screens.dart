@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
+import '../welcome_screens.dart';
+
 class Profile extends StatefulWidget {
   static String routeName = '/profile';
   const Profile({Key key}) : super(key: key);
@@ -43,9 +45,9 @@ class _ProfileState extends State<Profile> {
     text: 'Shipping Address',
     press: (){},
     ),
-      ProfileMenu(image:'icons/close.png ',
+      ProfileMenu(image:'icons/Cancel.png ',
         text: 'Log Out ',
-        press: (){},
+        press: (){Navigator.pushNamed(context, WelcomeScreen.id);}
       ),
     ],
     ),

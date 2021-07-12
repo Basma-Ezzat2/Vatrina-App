@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:welcome_page/screens/components/categories.dart';
 import 'package:welcome_page/screens/components/product.dart';
+import 'package:welcome_page/screens/components/veiw.dart';
 import '../homepage_screens.dart';
 
 
@@ -81,12 +82,19 @@ class _HomeState extends State<Home>
           scrollDirection: Axis.vertical,
         children: <Widget>[
           SizedBox(height: 15.0),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
           Text('Categories',
               style: TextStyle(
                   fontFamily: 'Source Sans Pro',
                   fontSize: 20.0,
                   color: Colors.lightBlue.shade500,
                   fontWeight: FontWeight.bold)),
+            IconButton(icon:  const Icon(Icons.arrow_forward_ios_outlined, color: Colors.lightBlue, size: 20,),
+                onPressed: () {
+                }),
+                ]),
           Categories(),
           SizedBox(height: 20.0),
           Row(
@@ -98,12 +106,14 @@ class _HomeState extends State<Home>
                   fontSize: 20.0,
                   color: Colors.lightBlue.shade500,
                   fontWeight: FontWeight.bold)),
-                Text('View All',
-                    style: TextStyle(
-                        fontFamily: 'Source Sans Pro',
-                        fontSize: 20.0,
-                        color: Colors.lightBlue.shade500,
-                        fontWeight: FontWeight.bold)),
+                InkWell(onTap: (){Navigator.pushNamed(context, View.id);},
+                 child: Text('View All',
+                      style: TextStyle(
+                          fontFamily: 'Source Sans Pro',
+                          fontSize: 20.0,
+                          color: Colors.lightBlue.shade500,
+                          fontWeight: FontWeight.bold)),
+                ),
               ]),
           Container(
             height: 200,
@@ -118,12 +128,15 @@ class _HomeState extends State<Home>
                   fontSize: 20.0,
                   color: Colors.lightBlue.shade500,
                   fontWeight: FontWeight.bold)),
-          Text('View All',
-              style: TextStyle(
-                  fontFamily: 'Source Sans Pro',
-                  fontSize: 20.0,
-                  color: Colors.lightBlue.shade500,
-                  fontWeight: FontWeight.bold)),
+                InkWell(onTap: (){Navigator.pushNamed(context, View.id);},
+                  child: Text('View All',
+                      style: TextStyle(
+                          fontFamily: 'Source Sans Pro',
+                          fontSize: 20.0,
+                          color: Colors.lightBlue.shade500,
+                          fontWeight: FontWeight.bold)),
+                ),
+
           ]),
           Container(
             height: 200,
@@ -139,12 +152,15 @@ class _HomeState extends State<Home>
                   fontSize: 20.0,
                   color: Colors.lightBlue.shade500,
                   fontWeight: FontWeight.bold)),
-                Text('View All',
-                    style: TextStyle(
-                        fontFamily: 'Source Sans Pro',
-                        fontSize: 20.0,
-                        color: Colors.lightBlue.shade500,
-                        fontWeight: FontWeight.bold)),
+                InkWell(onTap: (){Navigator.pushNamed(context, View.id);},
+                  child: Text('View All',
+                      style: TextStyle(
+                          fontFamily: 'Source Sans Pro',
+                          fontSize: 20.0,
+                          color: Colors.lightBlue.shade500,
+                          fontWeight: FontWeight.bold)),
+                ),
+
               ]),
           Container(
             height: 200,
@@ -153,7 +169,35 @@ class _HomeState extends State<Home>
         ],
       ),
       )
-
       );
+  }
+}
+class DataSearch extends SearchDelegate<String> {
+  @override
+  List<Widget> buildActions(BuildContext context) {
+    return [IconButton(icon: Icon(Icons.clear), onPressed: () {})];
+  }
+
+  @override
+  Widget buildLeading(BuildContext context) {
+    return IconButton(
+        icon: AnimatedIcon(
+          icon: AnimatedIcons.menu_arrow,
+          progress: transitionAnimation,
+        ),
+        onPressed: () {
+          Navigator.pushNamed(context, HomepageScreen.id);
+        });
+  }
+
+  @override
+  // ignore: missing_return
+  Widget buildResults(BuildContext context) {}
+
+  @override
+  Widget buildSuggestions(BuildContext context) {
+    return ListView.builder(
+      itemBuilder: (context, index) => ListTile(),
+    );
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:welcome_page/provider/modelHud.dart';
+import 'package:welcome_page/screens/components/veiw.dart';
 import 'package:welcome_page/screens/pview.dart';
 import 'screens/welcome_screens.dart';
 import 'package:welcome_page/screens/login_screens.dart';
@@ -34,6 +35,8 @@ class MyHomePage extends StatelessWidget {
         SignupScreen.id: (context) => SignupScreen(),
         ForgetPasswordScreen.id: (context) => ForgetPasswordScreen(),
         HomepageScreen.id: (context) => HomepageScreen(),
+        View.id: (context) => View(),
+
       },
 
     ),
