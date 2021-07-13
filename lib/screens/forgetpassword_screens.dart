@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:modal_progress_hud/modal_progress_hud.dart';
+import 'package:provider/provider.dart';
+import 'package:welcome_page/provider/modelHud.dart';
 
 import 'login_screens.dart';
 
@@ -10,17 +13,36 @@ class ForgetPasswordScreen extends StatefulWidget {
   _ForgetPasswordScreen createState() => _ForgetPasswordScreen();
 }
 class _ForgetPasswordScreen extends State<ForgetPasswordScreen> {
+  final _formKey = GlobalKey<FormState>();
+  String email;
+  bool remember = false;
+  final List<String> errors = [];
+
+  void addError({String error}) {
+    if (!errors.contains(error))
+      setState(() {
+        errors.add(error);
+      });
+  }
+  void removeError({String error}) {
+    if (errors.contains(error))
+      setState(() {
+        errors.remove(error);
+      });
+  }
   @override
   Widget build(BuildContext context){
     return Scaffold(
-        resizeToAvoidBottomInset: true,
-        body: SingleChildScrollView(
-        scrollDirection: Axis.vertical,
+        resizeToAvoidBottomInset: false,
+        body: ModalProgressHUD(
+        inAsyncCall: Provider.of<ModelHud>(context).isLoading,
+        child: Form(
+        key: _formKey,
         child: Container(
         padding: EdgeInsets.symmetric(horizontal: 25),
          child: Column(
-         crossAxisAlignment: CrossAxisAlignment.start,
-           children: [
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
            SizedBox(height: 50,),
            Row(
             children: [
@@ -45,9 +67,13 @@ class _ForgetPasswordScreen extends State<ForgetPasswordScreen> {
                    ),),
                ],
              ),
-             TextField(
-               onChanged: (value) {
-                 //Do something with the user input.
+             TextFormField(
+               validator: (val){
+                 if(val.isEmpty ){
+                   return'Invalid value';
+                 }return null;
+               },
+               onSaved: (val){
                },
                decoration: InputDecoration(
                  hintText: 'Enter your email',
@@ -95,6 +121,6 @@ class _ForgetPasswordScreen extends State<ForgetPasswordScreen> {
                ),
              ),
 
-    ],),),),);
+    ],),),),),);
   }
 }

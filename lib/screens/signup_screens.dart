@@ -215,7 +215,7 @@ class _SignupScreenState extends State<SignupScreen> {
                     padding: EdgeInsets.symmetric(vertical: 10),
                     onPressed: (){
                       if(_formKey.currentState.validate()){
-                      //do something
+                        Navigator.pushNamed(context, HomepageScreen.id);//do something
                     }},
                     minWidth: 200.0,
                     height: 30.0,

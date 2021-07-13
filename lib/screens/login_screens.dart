@@ -6,6 +6,7 @@ import 'package:welcome_page/provider/modelHud.dart';
 import 'package:welcome_page/screens/forgetpassword_screens.dart';
 import 'package:welcome_page/screens/signup_screens.dart';
 import 'package:welcome_page/screens/welcome_screens.dart';
+import 'homepage_screens.dart';
 import 'signup_screens.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 
@@ -128,7 +129,6 @@ class _LoginScreenState extends State<LoginScreen> {
                 }return null;
               },
               onSaved: (val){
-
               },
               decoration: InputDecoration(
                 hintText: 'Enter your password',
@@ -185,9 +185,8 @@ class _LoginScreenState extends State<LoginScreen> {
                   padding: EdgeInsets.symmetric(vertical: 10,horizontal: 10),
                   onPressed: () {
                     if(_formKey.currentState.validate()){
-                      //do something
+                      Navigator.pushNamed(context, HomepageScreen.id);//do something
                     }
-                    //Implement login functionality.
                   },
                   minWidth: 200.0,
                   height: 50.0,
